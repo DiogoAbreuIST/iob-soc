@@ -49,6 +49,22 @@ int main()
 
   //test printf with floats 
   printf("Value of Pi = %f\n\n", 3.1415);
+  
+  #print fibonaci sequence
+  
+  int f0=0, f1=1, fout=0;
+  int i;
+  printf("Fibonaci sequence\n");
+  printf("%d \n", f0);
+  printf("%d \n", f1);
+  
+  for (i = 0; i <= 40; i++){
+  	fout = f0 + f1;
+  	printf("%d \n", fout);
+  	f0 = f1;
+  	f2 = fout;
+  	}
+  
 
   //test file send
   char *sendfile = malloc(1000);
