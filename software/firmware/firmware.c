@@ -50,7 +50,7 @@ int main()
   //test printf with floats 
   printf("Value of Pi = %f\n\n", 3.1415);
   
-  #print fibonaci sequence
+  //print fibonaci sequence
   
   int f0=0, f1=1, fout=0;
   int i;
@@ -62,7 +62,7 @@ int main()
   	fout = f0 + f1;
   	printf("%d \n", fout);
   	f0 = f1;
-  	f2 = fout;
+  	f1 = fout;
   	}
   
 
