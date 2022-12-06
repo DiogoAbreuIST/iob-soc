@@ -1,6 +1,7 @@
 #include "system.h"
 #include "periphs.h"
 #include "iob-uart.h"
+#include "iob-gpio.h"
 #include "printf.h"
 
 char *send_string = "Sending this string as a file to console.\n"
@@ -43,6 +44,15 @@ int main()
 {
   //init uart
   uart_init(UART_BASE,FREQ/BAUD);
+  
+  //gpio start
+  gpio_init(GPIO_BASE);
+  
+  //int x = 0;
+  //while(x=!1){
+  //x = gpio_get();
+  //}
+  //print("%d \n",x)
 
   //test puts
   uart_puts("\n\n\nHello world!\n\n\n");
@@ -58,7 +68,7 @@ int main()
   printf("%d \n", f0);
   printf("%d \n", f1);
   
-  for (i = 0; i <= 40; i++){
+  for (i = 0; i <= 5; i++){
   	fout = f0 + f1;
   	printf("%d \n", fout);
   	f0 = f1;
