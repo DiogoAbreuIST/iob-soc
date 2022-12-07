@@ -89,7 +89,7 @@ UART_DIR=$(ROOT_DIR)/submodules/UART
 LIB_DIR=$(ROOT_DIR)/submodules/LIB
 MEM_DIR=$(ROOT_DIR)/submodules/MEM
 AXI_DIR=$(ROOT_DIR)/submodules/AXI
-GPIO_DIR=$(ROOT_DIR)/submodules/GPIO
+GPIO_DIR=$(ROOT_DIR)/test/GPIO
 
 #sw paths
 SW_DIR:=$(ROOT_DIR)/software
