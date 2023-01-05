@@ -19,23 +19,27 @@ module iob_gpio
     output [GPIO_W-1:0] gpio_output,
     // output enable can be used to tristate outputs on external module
     output [GPIO_W-1:0] gpio_output_enable,
-    input [31:0] DATA_IN,
-    output reg[7:0] RESULT,
 
 `include "iob_gen_if.vh"
     );
 
-test_module test0 
-    (
-    clk,
-    DATA_IN,
-    RESULT
-    );
+
 
 //BLOCK Register File & Configuration control and status register file.
 `include "iob_gpio_swreg_gen.vh"
 
     // SWRegs
+
+        `IOB_WIRE(DATA_REG, 32)
+    iob_reg #(32)
+    data_reg      (
+        .clk        (clk),
+        .arst       (rst),
+        .rst        (rst),
+        .en         (DATA_REG_en),
+        .data_in    (DATA_REG_wdata),
+        .data_out   (DATA_REG)
+    );
 
 
     `IOB_WIRE(GPIO_OUTPUT_ENABLE, DATA_W)
@@ -66,5 +70,12 @@ test_module test0
    // Write GPIO
    assign gpio_output = GPIO_OUTPUT;
    assign gpio_output_enable = GPIO_OUTPUT_ENABLE;
+
+   test_module test0 
+    (
+    clk,
+    DATA_REG,
+    RESULT
+    );
 
 endmodule
