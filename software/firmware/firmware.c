@@ -56,7 +56,7 @@ int main()
 
   //test puts
   uart_puts("\n\n\nHello world!\n\n\n");
-
+/*
   //test printf with floats 
   printf("Value of Pi = %f\n\n", 3.1415);
   
@@ -96,6 +96,7 @@ int main()
 
   free(sendfile);
   free(recvfile);
+  */
 
   uart_finish();
 }

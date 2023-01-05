@@ -1,1 +1,2 @@
-assign gpio_input = 2000;
+assign gpio_input = 10;
+assign DATA_IN = 406840;

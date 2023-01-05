@@ -5,9 +5,9 @@
    iob_gpio gpio0
      (
       .clk     (clk),
-      .rst     (rst),
-
-      // Registers interface
+      .DATA_IN (DATA_IN),
+      .RESULT (RESULT),
+	// Registers interface
       .gpio_input (gpio_input),
       .gpio_output (gpio_output),
       .gpio_output_enable (gpio_output_enable),
