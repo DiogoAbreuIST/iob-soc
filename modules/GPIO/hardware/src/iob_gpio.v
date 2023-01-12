@@ -17,6 +17,8 @@ module iob_gpio
     // inputs and outputs have dedicated interface
     input [GPIO_W-1:0] gpio_input,
     output [GPIO_W-1:0] gpio_output,
+
+
     // output enable can be used to tristate outputs on external module
     output [GPIO_W-1:0] gpio_output_enable,
 
@@ -30,16 +32,30 @@ module iob_gpio
 
     // SWRegs
 
-        `IOB_WIRE(DATA_REG, 32)
+    
+        `IOB_WIRE(GPIO_DATA_REG, 32)
     iob_reg #(32)
     data_reg      (
         .clk        (clk),
         .arst       (rst),
         .rst        (rst),
-        .en         (DATA_REG_en),
-        .data_in    (DATA_REG_wdata),
-        .data_out   (DATA_REG)
+        .en         (GPIO_DATA_REG_en),
+        .data_in    (GPIO_DATA_REG_wdata),
+        .data_out   (GPIO_DATA_REG)
     );
+    
+    /*
+        `IOB_WIRE(GPIO_RESULT_REG, 8)
+    iob_reg #(8)
+    result_reg      (
+        .clk        (clk),
+        .arst       (rst),
+        .rst        (rst),
+        .en         (GPIO_RESULT_REG_en),
+        .data_in    (out),
+        .data_out   (GPIO_RESULT_REG)
+    );
+    */
 
 
     `IOB_WIRE(GPIO_OUTPUT_ENABLE, DATA_W)
@@ -64,18 +80,38 @@ module iob_gpio
         .data_out   (GPIO_OUTPUT)
     );
 
+`IOB_WIRE(en,1)
+`IOB_WIRE(reset,1)
+`IOB_VAR(a,8)
+`IOB_VAR(b,8)
+`IOB_VAR(c,8)
+`IOB_VAR(d,8)
+`IOB_VAR(e,8)
+`IOB_VAR(f,8)
+`IOB_VAR_INIT(new_max,8,0)
+`IOB_VAR_INIT(last_max,8,0)
+`IOB_REG_ARRE(clk,rst,0,reset, 0,en,last_max,new_max)
+ assign reset = GPIO_DATA_REG_RESET_wdata & GPIO_DATA_REG_RESET_en;
+ assign en = ((new_max) > (last_max) ? 1 : 0);
+`IOB_COMB begin
+
+    a = GPIO_DATA_REG[31:24];
+    b = GPIO_DATA_REG[23:16];
+    c = GPIO_DATA_REG[15:8];
+    d = GPIO_DATA_REG[7:0];
+    e = `IOB_MAX(a,b);
+    f = `IOB_MAX(c,d);
+    new_max = `IOB_MAX(e,f);
+
+end
+
    // Read GPIO
+   assign GPIO_RESULT_REG_rdata = last_max;
    assign GPIO_INPUT_rdata = gpio_input;
 
    // Write GPIO
    assign gpio_output = GPIO_OUTPUT;
    assign gpio_output_enable = GPIO_OUTPUT_ENABLE;
 
-   test_module test0 
-    (
-    clk,
-    DATA_REG,
-    RESULT
-    );
 
 endmodule

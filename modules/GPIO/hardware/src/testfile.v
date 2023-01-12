@@ -4,7 +4,7 @@ module test_module
     (
     input clk,
     input [31:0] DATA_IN,
-    output reg[7:0] RESULT
+    output [7:0] RESULT
     );
 
 `IOB_VAR(a,8)
