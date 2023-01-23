@@ -1,8 +1,12 @@
+#include <time.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "system.h"
 #include "periphs.h"
 #include "iob-uart.h"
 #include "iob-gpio.h"
 #include "printf.h"
+#define ARRAY_SIZE 8
 
 char *send_string = "Sending this string as a file to console.\n"
                     "The file is then requested back from console.\n"
@@ -48,6 +52,9 @@ int compare_str(char *str1, char *str2, int str_size)
 
 int main()
 {
+
+    srand(time(NULL));
+
     // init uart
     uart_init(UART_BASE, FREQ / BAUD);
 
@@ -62,55 +69,33 @@ int main()
 
     // test puts
     uart_puts("\n\n\nHello world!\n\n\n");
-
-    uint8_t array[4][4];
-
-    for (int i = 0; i < 4; i++)
+    int z = 0;
+    uint8_t array[ARRAY_SIZE * ARRAY_SIZE];
+    for (int i = 0; i < ARRAY_SIZE * ARRAY_SIZE; i++)
     {
-        for (int j = 0; j < 4; j++)
-        {
-            array[i][j] = i + j;
-        }
+            if (z == ARRAY_SIZE){
+                 printf("\n");
+                 z=0;
+            }
+            array[i] = rand() % 100;
+            printf("%d ", array[i]);
+            z++;
     }
 
     IOB_GPIO_SET_DATA_REG_RESET(1);
     IOB_GPIO_SET_DATA_REG_RESET(0);
 
-    for (int c = 0; c < 3; c++)
-    {
-        IOB_GPIO_SET_DATA_REG((&array + c * 8));
-        printf("pointer = %d \n", &array + c * 8);
-    }
-
-    uint32_t y = 45678;
     uint8_t x = 0;
+    uint32_t *add;
 
-    IOB_GPIO_SET_DATA_REG_RESET(1);
-    IOB_GPIO_SET_DATA_REG_RESET(0);
-
-    IOB_GPIO_SET_DATA_REG(9852);
-    x = IOB_GPIO_GET_RESULT_REG();
-    printf("value = %d \n", x);
-
-    IOB_GPIO_SET_DATA_REG(124631);
-    x = IOB_GPIO_GET_RESULT_REG();
-    printf("value = %d \n", x);
-
-    IOB_GPIO_SET_DATA_REG(7463);
-    x = IOB_GPIO_GET_RESULT_REG();
-    printf("value = %d \n", x);
-
-    IOB_GPIO_SET_DATA_REG(357293);
-    x = IOB_GPIO_GET_RESULT_REG();
-    printf("value = %d \n", x);
-
-    IOB_GPIO_SET_DATA_REG(883396);
-    x = IOB_GPIO_GET_RESULT_REG();
-    printf("value = %d \n", x);
-
-    IOB_GPIO_SET_DATA_REG(1217495);
-    x = IOB_GPIO_GET_RESULT_REG();
-    printf("value = %d \n", x);
+    for (int c = 0; c < (ARRAY_SIZE * ARRAY_SIZE / 4) ; c++)
+    {
+        add = array + c*4;
+        printf("adress: %d\n" , add);
+        IOB_GPIO_SET_DATA_REG (*add);
+        x = IOB_GPIO_GET_RESULT_REG();
+        printf("value = %d \n", x);
+    }
 
     /*
       //test printf with floats
