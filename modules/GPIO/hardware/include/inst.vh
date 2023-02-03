@@ -10,6 +10,8 @@
       .gpio_sw (gpio_sw),
       .gpio_output (gpio_output),
       .gpio_output_enable (gpio_output_enable),
+      .gpio_disp_an (gpio_disp_an),
+      .gpio_disp_ca (gpio_disp_ca),
 
       // CPU interface
       .valid   (slaves_req[`valid(`GPIO)]),

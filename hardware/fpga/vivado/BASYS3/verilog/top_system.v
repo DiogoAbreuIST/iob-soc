@@ -4,6 +4,7 @@
 module top_system(
 	          input         clk,
 	          input         reset,
+	          input[11:0] gpio_sw,
 
 	          //uart
 	          output        uart_txd,
@@ -46,7 +47,12 @@ module top_system(
       .uart_txd      (uart_txd),
       .uart_rxd      (uart_rxd),
       .uart_rts      (),
-      .uart_cts      (1'b1)
+      .uart_cts      (1'b1),
+      
+      //GPIO
+      
+      .gpio_sw	     (gpio_sw)
       );
+      
 
 endmodule

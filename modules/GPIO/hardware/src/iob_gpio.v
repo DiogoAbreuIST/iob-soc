@@ -21,6 +21,8 @@ module iob_gpio
     output [GPIO_W-1:0] gpio_output,
     // output enable can be used to tristate outputs on external module
     output [GPIO_W-1:0] gpio_output_enable,
+    output [3:0] gpio_disp_an,
+    output [7:0] gpio_disp_ca,
 
 `include "iob_gen_if.vh"
     );
