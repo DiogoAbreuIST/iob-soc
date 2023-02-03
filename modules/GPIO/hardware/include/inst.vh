@@ -7,6 +7,7 @@
       .clk     (clk),
 	// Registers interface
       .gpio_input (gpio_input),
+      .gpio_sw (gpio_sw),
       .gpio_output (gpio_output),
       .gpio_output_enable (gpio_output_enable),
 

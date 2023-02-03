@@ -16,9 +16,9 @@ module iob_gpio
 
     // inputs and outputs have dedicated interface
     input [GPIO_W-1:0] gpio_input,
+    input [11:0] gpio_sw,
+    
     output [GPIO_W-1:0] gpio_output,
-
-
     // output enable can be used to tristate outputs on external module
     output [GPIO_W-1:0] gpio_output_enable,
 
@@ -43,19 +43,7 @@ module iob_gpio
         .data_in    (GPIO_DATA_REG_wdata),
         .data_out   (GPIO_DATA_REG)
     );
-    
-    /*
-        `IOB_WIRE(GPIO_RESULT_REG, 8)
-    iob_reg #(8)
-    result_reg      (
-        .clk        (clk),
-        .arst       (rst),
-        .rst        (rst),
-        .en         (GPIO_RESULT_REG_en),
-        .data_in    (out),
-        .data_out   (GPIO_RESULT_REG)
-    );
-    */
+  
 
 
     `IOB_WIRE(GPIO_OUTPUT_ENABLE, DATA_W)
@@ -106,6 +94,7 @@ module iob_gpio
 end
 
    // Read GPIO
+   assign GPIO_SWITCH_REG_rdata = gpio_sw;
    assign GPIO_RESULT_REG_rdata = last_max;
    assign GPIO_INPUT_rdata = gpio_input;
 
