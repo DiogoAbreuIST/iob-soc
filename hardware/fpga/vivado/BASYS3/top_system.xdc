@@ -74,22 +74,23 @@ set_property PACKAGE_PIN W4 [get_ports {gpio_disp_an[3]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {gpio_disp_an[3]}]
 
 ## Cathodes
-set_property PACKAGE_PIN W7 [get_ports {gpio_disp_ca[0]}] 	## A
-set_property IOSTANDARD LVCMOS33 [get_ports {gpio_disp_ca[0]}]
-set_property PACKAGE_PIN W6 [get_ports {gpio_disp_ca[1]}] 	## B
-set_property IOSTANDARD LVCMOS33 [get_ports {gpio_disp_ca[1]}]
-set_property PACKAGE_PIN U8 [get_ports {gpio_disp_ca[2]}] 	## C
-set_property IOSTANDARD LVCMOS33 [get_ports {gpio_disp_ca[2]}]
-set_property PACKAGE_PIN V8 [get_ports {gpio_disp_ca[3]}] 	## D
-set_property IOSTANDARD LVCMOS33 [get_ports {gpio_disp_ca[3]}]
-set_property PACKAGE_PIN U5 [get_ports {gpio_disp_ca[4]}] 	## E
-set_property IOSTANDARD LVCMOS33 [get_ports {gpio_disp_ca[4]}]
-set_property PACKAGE_PIN V5 [get_ports {gpio_disp_ca[5]}] 	## F
-set_property IOSTANDARD LVCMOS33 [get_ports {gpio_disp_ca[5]}]
-set_property PACKAGE_PIN U7 [get_ports {gpio_disp_ca[6]}] 	## G
-set_property IOSTANDARD LVCMOS33 [get_ports {gpio_disp_ca[6]}]
-set_property PACKAGE_PIN V7 [get_ports {gpio_disp_ca[7]}] 	## Point
-set_property IOSTANDARD LVCMOS33 [get_ports {gpio_disp_ca[7]}]
+set_property PACKAGE_PIN W7 [get_ports {gpio_disp_ca[6]}]                    
+   set_property IOSTANDARD LVCMOS33 [get_ports {gpio_disp_ca[6]}]
+set_property PACKAGE_PIN W6 [get_ports {gpio_disp_ca[5]}]                    
+   set_property IOSTANDARD LVCMOS33 [get_ports {gpio_disp_ca[5]}]
+set_property PACKAGE_PIN U8 [get_ports {gpio_disp_ca[4]}]                    
+   set_property IOSTANDARD LVCMOS33 [get_ports {gpio_disp_ca[4]}]
+set_property PACKAGE_PIN V8 [get_ports {gpio_disp_ca[3]}]                    
+   set_property IOSTANDARD LVCMOS33 [get_ports {gpio_disp_ca[3]}]
+set_property PACKAGE_PIN U5 [get_ports {gpio_disp_ca[2]}]                    
+   set_property IOSTANDARD LVCMOS33 [get_ports {gpio_disp_ca[2]}]
+set_property PACKAGE_PIN V5 [get_ports {gpio_disp_ca[1]}]                    
+   set_property IOSTANDARD LVCMOS33 [get_ports {gpio_disp_ca[1]}]
+set_property PACKAGE_PIN U7 [get_ports {gpio_disp_ca[0]}]                    
+   set_property IOSTANDARD LVCMOS33 [get_ports {gpio_disp_ca[0]}]
+
+
+
 
 
 

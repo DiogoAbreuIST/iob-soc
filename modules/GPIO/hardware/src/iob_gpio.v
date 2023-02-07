@@ -22,7 +22,7 @@ module iob_gpio
     // output enable can be used to tristate outputs on external module
     output [GPIO_W-1:0] gpio_output_enable,
     output [3:0] gpio_disp_an,
-    output [7:0] gpio_disp_ca,
+    output [6:0] gpio_disp_ca,
 
 `include "iob_gen_if.vh"
     );
@@ -69,6 +69,29 @@ module iob_gpio
         .data_in    (GPIO_OUTPUT_wdata),
         .data_out   (GPIO_OUTPUT)
     );
+    
+    `IOB_WIRE(GPIO_DISP_AN, 8)
+    iob_reg #(8)
+    gpio_disp_an_reg      (
+        .clk        (clk),
+        .arst       (rst),
+        .rst        (rst),
+        .en         (GPIO_DISP_AN_en),
+        .data_in    (GPIO_DISP_AN_wdata),
+        .data_out   (GPIO_DISP_AN)
+    );
+
+    `IOB_WIRE(GPIO_DISP_CA, 8)
+    iob_reg #(8)
+    gpio_disp_ca_reg      (
+        .clk        (clk),
+        .arst       (rst),
+        .rst        (rst),
+        .en         (GPIO_DISP_CA_en),
+        .data_in    (GPIO_DISP_CA_wdata),
+        .data_out   (GPIO_DISP_CA)
+    );
+
 
 `IOB_WIRE(en,1)
 `IOB_WIRE(reset,1)
@@ -103,6 +126,8 @@ end
    // Write GPIO
    assign gpio_output = GPIO_OUTPUT;
    assign gpio_output_enable = GPIO_OUTPUT_ENABLE;
+   assign gpio_disp_an = GPIO_DISP_AN;
+   assign gpio_disp_ca = GPIO_DISP_CA;
 
 
 endmodule

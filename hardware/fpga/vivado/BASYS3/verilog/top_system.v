@@ -8,7 +8,9 @@ module top_system(
 
 	          //uart
 	          output        uart_txd,
-	          input         uart_rxd
+	          input         uart_rxd,
+    		  output [3:0] gpio_disp_an,
+    		  output [6:0] gpio_disp_ca
 		  );
 
    //
@@ -51,7 +53,9 @@ module top_system(
       
       //GPIO
       
-      .gpio_sw	     (gpio_sw)
+      .gpio_sw	     (gpio_sw),
+      .gpio_disp_an	(gpio_disp_an),
+      .gpio_disp_ca	(gpio_disp_ca)
       );
       
 
